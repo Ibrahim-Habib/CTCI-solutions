@@ -26,7 +26,7 @@ bool checkPermutationSorting(string s1, string s2)
 
 // Solution using Counting array, O(N)
 // assuming that characters of both strings are alphanumeric
-bool CheckPermutationCounting(string s1, string s2)
+bool checkPermutationCounting(string s1, string s2)
 {
     if(s1.size() != s2.size())
     {
@@ -58,3 +58,17 @@ bool CheckPermutationCounting(string s1, string s2)
     return true;
 }
 
+int main()
+{
+    string s1 = "door";
+    string s1Anagram = "doro";
+    string s1NotAnagram = "road";
+
+    assert(checkPermutationCounting(s1, s1Anagram));
+    assert(checkPermutationSorting(s1, s1Anagram));
+
+    assert(!checkPermutationCounting(s1, s1NotAnagram));
+    assert(!checkPermutationSorting(s1, s1NotAnagram));
+
+    return 0;
+}

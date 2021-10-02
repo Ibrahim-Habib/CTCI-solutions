@@ -42,3 +42,9 @@ string URLify(string s, int length)
 
     return s;
 }
+
+int main()
+{
+    cout << URLify("Mr John Smith    ", 13) << endl;
+    return 0;
+}

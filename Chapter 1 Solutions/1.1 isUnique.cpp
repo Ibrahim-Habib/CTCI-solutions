@@ -61,3 +61,19 @@ bool isUniqueLinear(string s)
 
     return true;
 }
+
+int main()
+{
+    string uniqueString = "abcdefghijklmnopqrstuvwxyz";
+    string notUniqueString = "aalskddskloiwelksd";
+
+    assert(isUniqueBruteforce(uniqueString));
+    assert(isUniqueLinear(uniqueString));
+    assert(isUniqueSorting(uniqueString));
+
+    assert(!isUniqueBruteforce(notUniqueString));
+    assert(!isUniqueLinear(notUniqueString));
+    assert(!isUniqueSorting(notUniqueString));
+
+    return 0;
+}
