@@ -3,7 +3,7 @@
 using namespace std;
 
 /*
-    2.1 return Kth to last:
+    2.2 return Kth to last:
     Implement an algorithm to find the kth to last element of a singly linked list
 */
 
