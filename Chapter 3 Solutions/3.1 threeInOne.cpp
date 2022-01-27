@@ -48,7 +48,7 @@ public:
         switch (index)
         {
             case 0:
-                if (firstStackIndex == N / 3)
+                if (firstStackIndex >= N / 3)
                 {
                     throw std::range_error("First stack is FULL!");
                 }
@@ -56,23 +56,26 @@ public:
                 firstStackIndex++;
                 break;
             case 1:
-                if (secondStackIndex == thirdStackIndex)
+                if (secondStackIndex >= thirdStackIndex)
                 {
                     throw std::range_error("Second stack is FULL!");;
                 }
                 arr[secondStackIndex] = item;
                 secondStackIndex++;
+                break;
             case 2:
-                if (secondStackIndex == thirdStackIndex)
+                if (secondStackIndex >= thirdStackIndex)
                 {
                     throw std::range_error("Third stack is FULL!");
                     return;
                 }
                 arr[thirdStackIndex] = item;
                 thirdStackIndex--;
+                break;
 
             default:
                 throw std::invalid_argument::invalid_argument();
+                break;
         }
 
     }
@@ -82,34 +85,32 @@ public:
         switch (index)
         {
             case 0:
-                if (firstStackIndex == 0)
+                if (firstStackIndex <= 0)
                 {
                     throw std::out_of_range("First stack is empty!");
                 }
                 firstStackIndex--;
                 return arr[firstStackIndex];
-                break;
 
             case 1:
-                if (secondStackIndex == N / 3)
+                if (secondStackIndex <= N / 3)
                 {
                     throw std::out_of_range("Second stack is empty!");
                 }
                 secondStackIndex--;
                 return arr[secondStackIndex];
-                break;
 
             case 2:
-                if (thirdStackIndex == N - 1)
+                if (thirdStackIndex >= N - 1)
                 {
                     throw std::out_of_range("Third stack is empty!");
                 }
                 thirdStackIndex++;
                 return arr[thirdStackIndex];
-                break;
 
             default:
                 throw std::invalid_argument::invalid_argument();
+                break;
         }
     }
 
@@ -119,15 +120,41 @@ public:
         switch (index)
         {
             case 0:
-                return firstStackIndex == 0;
+                return firstStackIndex <= 0;
             case 1:
-                return secondStackIndex == N / 3;
-            case 3:
-                return thirdStackIndex == N - 1;
+                return secondStackIndex <= N / 3;
+            case 2:
+                return thirdStackIndex >= N - 1;
             default:
                 throw std::invalid_argument::invalid_argument();
+                break;
         }
+        return 0;
+    }
 
+    void displayContent()
+    {
+        cout << "First stack content";
+        for (int i = 0; i < firstStackIndex; i++)
+        {
+            cout << " " << arr[i];
+        }
+        cout << endl;
+
+        cout << "Second stack content";
+        for (int i = N / 3; i < secondStackIndex; i++)
+        {
+            cout << " " << arr[i];
+        }
+        cout << endl;
+
+        cout << "Third stack content";
+        for (int i = N - 1; i > thirdStackIndex; i--)
+        {
+            cout << " " << arr[i];
+        }
+        cout << endl;
+        cout << "----------------------------------------------" << endl;
     }
 
 };
@@ -140,9 +167,12 @@ int main()
         for (int i = 0; i < 10; i++)
         {
             cout << "Push " << i * (curStack + 1) << " to stack #" << curStack << endl;
-            arrayStack.push(curStack, 3 * i);
+            arrayStack.push(curStack, i * (curStack + 1));
         }
+        cout << "----------------------------------------------" << endl;
     }
+
+    arrayStack.displayContent();
 
     for (int curStack = 0; curStack < 3; curStack++)
     {
@@ -150,6 +180,7 @@ int main()
         {
             cout << "Pop " << arrayStack.pop(curStack) << " from stack #" << curStack << endl;
         }
+        cout << "----------------------------------------------" << endl;
     }
 
     return 0;
